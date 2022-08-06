@@ -1,0 +1,47 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/mine/mine",
+        "pages/mine/info/info",
+        "pages/area/area",
+        "pages/login/login",
+        "pages/other/other",
+        "pages/banzu/banzu",
+        "pages/order/detail/detail",
+        "pages/mine/about/about",
+        "pages/teacher/TeacherReg",
+        "components/datePicker/datePicker",
+        "components/datePicker2/datePicker2"
+    ],
+    "window": {
+        "backgroundTextStyle": "dark",
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTitleText": "SharksVolunteers",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "selectedColor": "#6887e1",
+        "borderStyle": "white",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "Home",
+                "iconPath": "img/t1.png",
+                "selectedIconPath": "img/t2.png"
+            },
+            {
+                "pagePath": "pages/banzu/banzu",
+                "text": "Help",
+                "iconPath": "img/t7.png",
+                "selectedIconPath": "img/t8.png"
+            },
+            {
+                "pagePath": "pages/mine/mine",
+                "text": "Me",
+                "iconPath": "img/t5.png",
+                "selectedIconPath": "img/t6.png"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json"
+}

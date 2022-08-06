@@ -1,0 +1,29 @@
+<view class="pa-l30 pa-r30">
+  <view class='pa-t30 pa-b30 border-b panel-between item-center' data-path='/pages/mine/chooseaddress/chooseaddress' bindtap='navTo'>
+    <view class='panel-start item-center'>
+      <image src='/img/l1.png' class='icon-35'></image>
+      <view class='fo-30 ma-l20'>Select Location</view>
+    </view>
+    <view class='panel-end item-center'>
+      <view class='fo-30 fo-g'>{{address ? address:'Select'}}</view>
+      <image src='/img/right.png' class='icon-30 ma-l20'></image>
+    </view>
+  </view>
+  <view class='pa-t30 pa-b30 border-b panel-between item-center'>
+    <view class='panel-start item-center'>
+      <image src='/img/d1.png' class='icon-35'></image>
+      <view class='fo-30 ma-l20'>Name</view>
+    </view>
+    <view class='panel-end item-center'>
+      <input class='fo-30 fo-g text-right' value='{{detail}}' bindinput='bInput' placeholder='Teacher A'></input>
+    </view>
+  </view>
+  <view class='pa-t30 pa-b30 panel-end item-center'>
+    <view class='fo-26 fo-g'>Set as default</view>
+    <switch checked='{{mo}}' bindchange='dchange' color='#0099ff' class='ma-l20'></switch>
+  </view>
+
+  <view class='pa-30'>
+    <button class='btns' bindtap='submit'>Save</button>
+  </view>
+</view>

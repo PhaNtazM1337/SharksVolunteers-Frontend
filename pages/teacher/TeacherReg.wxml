@@ -1,0 +1,28 @@
+
+<view class='pa-30'>
+
+<view class='bz'>
+  <view style='height:60rpx'>
+      <image class="avatar" src='{{userInfo.avatar_url}}' mode='aspectFill'></image>
+  </view>
+  <form bindsubmit="formSubmit" report-submit="true">
+    <!-- <view class='fo-28 ma-t10 bold'>Job Description:</view>
+    <view class='border pa-20 ma-t20'>
+      <textarea class='fo-28' name='des' value='{{des}}' style='height:{{msg.tagsFilter.length==0?200:100}}rpx' placeholder='Enter description here'></textarea>
+      <view class='panel-start wrap'>
+        <view class='tags' wx:for="{{msg.tagsFilter}}" data-index='{{index}}' bindtap='tagsClick'>{{item.label}}</view>
+      </view>
+    </view> -->
+    <view class='panel-between border-b pa-t30 pa-b10 '>
+      <view class='fo-28 bold'>Name:</view>
+      <input class='text-right fo-28'  name='teachername' value="{{teachername}}" bindinput='usernameInput' placeholder='Enter name'></input>
+    </view>
+    <view class='panel-between border-b pa-t30 pa-b10 '>
+      <view class='fo-28 bold'>Position:</view>
+      <input class='text-right fo-28'  name='position' value="{{position}}" placeholder='Enter here'></input>
+    </view>
+    <button class='btns ' form-type="submit">Confirm</button>
+  </form>
+  
+</view>
+</view>

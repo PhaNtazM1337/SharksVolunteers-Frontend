@@ -1,0 +1,26 @@
+<view>
+  <!-- <image wx:if="{{imgurls.length==0}}" src='http://imgsrc.baidu.com/imgad/pic/item/503d269759ee3d6dfd34301f49166d224e4ade70.jpg'
+    class='bg' mode='aspectFill'></image> -->
+  <image src='/img/logo1.png'
+    class='bg' mode='aspectFill'></image>
+  <swiper wx:if="{{imgurls.length>0}}" indicator-dots="true" autoplay="true" interval="5000" duration="500" class='bg'>
+    <block wx:for="{{imgurls}}">
+      <swiper-item>
+        <image src="{{item.cover}}" data-path="{{item.path}}" bindtap='navTo2' class="slide-image" mode='aspectFill' class='bg'  />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+
+<view class='pa-60 panel-between wrap' style='padding-bottom:0;'>
+  <view wx:for="{{list}}" wx:key="{{index}}" class='items panel-center wrap' data-index='{{index}}' data-name='{{item.server_name}}' data-path="{{item.page}}" bindtap='navTo'>
+    <view class='text-center'>
+      <view class='cri panel-center item-center' style='background:linear-gradient(to right top,#6183dd,#6e42d3)'>
+        <image src='{{item.icon}}' class='icon-30'></image>
+      </view>
+      <view class=' fo-30 text-center ma-t20 fo-t'>{{item.server_name}}</view>
+      <view class='fo-26 fo-g text-center' wx:if="{{item.is_show == 0}}">(休息中)</view>
+    </view>
+  </view>
+</view>
