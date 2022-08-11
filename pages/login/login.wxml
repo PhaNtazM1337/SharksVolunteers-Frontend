@@ -8,6 +8,9 @@
     </view>
   </view>
   <view class='pa-30'>
+    <view class='panels ra-20'>
+      <input class='bgg ra-10' data-name='email' bindinput='ddinput' placeholder='Enter email'></input>
+    </view>
     <view class="fo-26 ma-t30 fo-w text-center " style='margin-top:100rpx'>Collect your username and profile picture</view>
     <button class="login-btn ma-t30" bindtap="getUserProfile">Login</button>
   </view>

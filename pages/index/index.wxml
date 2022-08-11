@@ -19,8 +19,15 @@
       <view class='cri panel-center item-center' style='background:linear-gradient(to right top,#6183dd,#6e42d3)'>
         <image src='{{item.icon}}' class='icon-30'></image>
       </view>
-      <view class=' fo-30 text-center ma-t20 fo-t'>{{item.server_name}}</view>
-      <view class='fo-26 fo-g text-center' wx:if="{{item.is_show == 0}}">(休息中)</view>
+      <view class=' fo-30 text-center ma-t20 fo-t'>Request Help</view>
+    </view>
+  </view>
+  <view class='items panel-center wrap' bindtap='navToFeedback'>
+    <view class='text-center'>
+      <view class='cri panel-center item-center' style='background:linear-gradient(to right top,#6183dd,#6e42d3)'>
+        <image src='/img/t3.png' class='icon-30'></image>
+      </view>
+      <view class=' fo-30 text-center ma-t20 fo-t'>Feedback</view>
     </view>
   </view>
 </view>

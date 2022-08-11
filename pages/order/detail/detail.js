@@ -6,28 +6,43 @@ Page({
    * 页面的初始数据
    */
   data: {
-    wx_id:wx.getStorageSync("user").id
+    wx_id:wx.getStorageSync("user").id,
+    hours:0
+  },
+  hoursInput:function(e){//获取input里的value值
+    this.setData({
+      hours: e.detail.value
+    })
   },
   comfirm(e) {
-    let id = e.currentTarget.dataset.id
-    wx.showLoading({
-      title: '请稍等',
-      task:true
-    })
-    app.com.post('help/confirm', { id: id }, function (res) {
-      wx.hideLoading()
-      if (res.code == 1) {
-        wx.showToast({
-          title: '订单已完成',
-        })
-        _this.getList(_this.data.list.id)
-      } else {
-        wx.showToast({
-          title: '确认失败',
-          icon: 'none'
-        })
-      }
-    })
+    if (this.data.hours==0){
+      wx.showToast({
+        title: 'Enter hours',
+        icon: 'none'
+      })
+    }
+    else{
+      let id = e.currentTarget.dataset.id
+      let hours=this.data.hours
+      wx.showLoading({
+        title: '请稍等',
+        task:true
+      })
+      app.com.post('help/confirm', {id: id, hours:hours}, function (res) {
+        wx.hideLoading()
+        if (res.code == 1) {
+          wx.showToast({
+            title: '订单已完成',
+          })
+          _this.getList(_this.data.list.id)
+        } else {
+          wx.showToast({
+            title: '确认失败',
+            icon: 'none'
+          })
+        }
+      })
+    }
   },
   takeIt(e) {
     let msg = this.data.list
@@ -138,7 +153,7 @@ Page({
   },
   getList(id) {
     app.com.post('help/get2', {
-      fields: 'helplist.*,wxuser.phone,wxuser.dphone,wxuser.avatar_url,wxuser.nick_name',
+      fields: 'helplist.*,wxuser.phone,wxuser.dphone,wxuser.avatar_url,wxuser.nick_name,wxuser.email',
       wheres:'helplist.id='+id,
       sorts:'helplist.create_time asc'
     }, function (res) {

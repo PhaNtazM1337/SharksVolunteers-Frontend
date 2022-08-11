@@ -19,7 +19,7 @@
     <view class='fo-26 ma-t30 fo-g'>Location：{{list.location}}</view>
     <view class='fo-26 ma-t30 fo-g'>Start：{{list.whentask}}</view>
     <view class='fo-26 ma-t30 fo-g'>End：{{list.whenend}}</view>
-    <!-- <view class='state ste4 ma-t30'>赏金￥{{list.total_fee}}</view> -->
+    <view class='fo-26 ma-t30 fo-g'>Contact：{{list.email}}</view>
     <view class='panel-end' style='height:30rpx'>
       <view class='cri2 panel-center item-center' style='background-color:rgb(51, 153, 255);box-shadow: 0 0 10rpx 0 rgb(51, 153, 255)' wx:if="{{list.dphone}}" data-type='dphone' bindtap='makePhoneCall'>
         <view class='text-center'>
@@ -52,7 +52,8 @@
       </view>
       <view class='panel-end item-center'>
         <!-- <view class='tagsd1' data-type='dphone' bindtap='makePhoneCall2'>拨打短号</view> -->
-        <view class='tagsd2' data-type='phone' bindtap='makePhoneCall2'>Contact</view>
+        <!-- <view class='tagsd2' data-type='phone'>Contact: </view> -->
+        <text class='fo-26 ma-t30 fo-g'>Contact: {{jduser.email}}</text>
       </view>
     </view>
   </view>
@@ -63,6 +64,32 @@
   <view class='bzbtn3 ' wx:if="{{(list.state == 1 || list.state == 0) && list.wx_id == wx_id}}" data-id='{{list.id}}' bindtap='cancel'>Cancel</view>
   <view class='bzbtn2 ' wx:if="{{list.state == 0 && wx_id == list.wx_id}}" data-title='{{list.title}}' data-id='{{list.id}}' data-price='{{list.total_fee}}' bindtap='pay'>立即付款</view>
   <view class='bzbtn4 ma-l30' wx:if="{{list.state == 2 && wx_id == list.wx_id}}"  data-id='{{list.id}}'  bindtap='comfirm'>Confirm</view>
+</view>
+
+<view class='pa-30 ' wx:if="{{list.state == 2 && wx_id == list.wx_id}}">
+  <view class='panel ra-10 shadow'>
+    <view class='panel-between item-center'>
+      <view class='panel-start item-center'>
+        <view class='fo-28 bold ma-l30'>Hours</view>
+      </view>
+      <view class='panel-end item-center'>
+        <input class='text-right fo-28'  name='hours' type="number" bindinput="hoursInput" placeholder='Enter total hours'></input>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='pa-30 ' wx:if="{{list.state == 3}}">
+  <view class='panel ra-10 shadow'>
+    <view class='panel-between item-center'>
+      <view class='panel-start item-center'>
+        <view class='fo-28 bold ma-l30'>Total Hours: </view>
+      </view>
+      <view class='panel-end item-center'>
+        <text class='text-right fo-28'>{{list.hours}}</text>
+      </view>
+    </view>
+  </view>
 </view>
 
 <view class='pa-30 fo-30 fo-g' wx:if="{{list.is_pay == 1}}">订单编号：{{list.order_num}}</view>

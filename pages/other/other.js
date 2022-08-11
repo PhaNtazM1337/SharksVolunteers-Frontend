@@ -4,22 +4,63 @@ const app = getApp()
 let _this;
 Page({
   data: {
+    array: ['MHS', 'ES1', 'ES2', 'Other'],
+    objectArray: [
+      {
+        id: 0,
+        name: 'MHS'
+      },
+      {
+        id: 1,
+        name: 'ES1'
+      },
+      {
+        id: 2,
+        name: 'ES2'
+      },
+      {
+        id: 3,
+        name: 'Other'
+      }
+    ],
+    index:0,
+    building: '',
     price: '',
     location:'',
     des: '',
     phone: '',
-    hourMinuteSecond1: '',
-    hourMinuteSecond2: '',
+    date: '',
+    time: '',
+    currentdate: '',
+    currenttime: '',
+    date2: '',
+    time2: '',
     wx_id:wx.getStorageSync("user").id
   },
-  selectDateMinuteChange(e) {
+  bindDateChange: function(e) {
     this.setData({
-      hourMinuteSecond1: e.detail.value
+      date: e.detail.value
     })
   },
-  selectDateMinuteChange2(e) {
+  bindTimeChange: function(e) {
     this.setData({
-      hourMinuteSecond2: e.detail.value
+      time: e.detail.value
+    })
+  },
+  bindDateChange2: function(e) {
+    this.setData({
+      date2: e.detail.value
+    })
+  },
+  bindTimeChange2: function(e) {
+    this.setData({
+      time2: e.detail.value
+    })
+  },
+  bindPickerChange: function(e) {
+    console.log(this.data.date)
+    this.setData({
+      index: e.detail.value,
     })
   },
   navTo(e) {
@@ -36,11 +77,17 @@ Page({
     })
   },
   formSubmit(e) {
+    this.setData({
+      building: this.data.array[this.data.index]
+    })
     let formId = e.detail.formId
     let isTeacher=this.data.isTeacher
+    let building = this.data.building
     let location=this.data.location
-    let whentask = this.data.hourMinuteSecond1
-    let whenend = this.data.hourMinuteSecond2
+    let date = this.data.date
+    let date2 = this.data.date2
+    let time = this.data.time
+    let time2 = this.data.time2
     if (e.detail.value.des == '') {
       wx.showToast({
         title: 'Enter description',
@@ -52,28 +99,22 @@ Page({
         title: 'Enter location',
         icon: 'none'
       })
-    } else if (whentask == '' || whenend ==''){
-      console.log(whentask)
-      wx.showToast({
-        title: 'Enter time',
-        icon: 'none'
-      })
-    }else if (isTeacher == 1) {
+    } else if (isTeacher == 1) {
       wx.showLoading({
         title: 'Loading',
       })
       app.com.post('help/add', {
         openid: wx.getStorageSync("user").openid, 
         des: e.detail.value.des,
-        location:e.detail.value.location,
+        location:building + " " + location,
         wx_id: wx.getStorageSync("user").id,
         total_fee: 10,
         a_id: wx.getStorageSync("area").pk_id,
         title:this.data.title,
         mu: this.data.address,
         qi: e.detail.value.qi,
-        whentask: whentask,
-        whenend: whenend,
+        whentask: date + " " + time,
+        whenend: date2 + " " + time2,
         form_id: e.detail.formId,
       }, function (res) {
         wx.hideLoading()
@@ -118,18 +159,45 @@ Page({
       des: this.data.msg.tagsFilter[index].label,
     })
   },
+  formatNumber(n) {
+    n = n.toString()
+    return n[1] ? n : '0' + n
+  },
+  formatTime(date) {
+    var hour = date.getHours()
+    var minute = date.getMinutes()
+  
+    return [hour, minute].map(this.formatNumber).join(':')
+  },
+  formatDate(date) {
+    var year = date.getFullYear()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+  
+    return [year, month, day].map(this.formatNumber).join('-')
+  },
   onLoad: function (options) {
     _this = this
     let msg = wx.getStorageSync("server")[options.index];
+    let date=this.formatDate(new Date());
+    let time=this.formatTime(new Date());
+    console.log(date);
     let tags = msg.tags ?  msg.tags.split(','):[];
     let arr= []
     for(let i in tags){
       arr.push({ label: tags[i], price: tags[i].replace(/[^0-9]/ig, "")})
     }
     msg.tagsFilter = arr
+    
     this.setData({
       title:options.label,
       msg: msg,
+      date: date,
+      time: time,
+      date2: date,
+      time2: time,
+      currentdate: date,
+      currenttime: time
     })
     wx.setNavigationBarTitle({
       title: options.label,

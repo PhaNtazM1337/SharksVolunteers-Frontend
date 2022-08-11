@@ -15,47 +15,37 @@
       </view>
       <view class='panel-between border-b pa-t30 pa-b10 '>
         <view class='fo-28 bold'>Location:</view>
-        <input class='text-right fo-28'  name='location' bindinput='locationInput' placeholder='Enter location'></input>
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <view class="picker">{{array[index]}}</view>
+        </picker>
+        <input class='text-right fo-28'  name='location' bindinput='locationInput' placeholder='Enter location (campus)'></input>
       </view>
       <view class='panel-between border-b pa-t30 pa-b10 '>
         <view class='fo-28 bold'>Start:</view>
-        <view>
-          <DatetimePicker mode="dateminute" value="{{hourMinuteSecond1}}" bindchange="selectDateMinuteChange">
-            <view class="show-date-time-box">Select {{hourMinuteSecond1}}</view>
-          </DatetimePicker>
-        </view>
+        <picker mode="date" value="{{date}}" start="{{currentdate}}" end="2099-12-31" bindchange="bindDateChange">
+          <view class="picker">{{date}}</view>
+        </picker>
+        <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+          <view class="picker">
+            {{time}}
+          </view>
+        </picker>
       </view>
       <view class='panel-between border-b pa-t30 pa-b10 '>
         <view class='fo-28 bold'>End:</view>
-        <view>
-          <DatetimePicker2 mode="dateminute" value="{{hourMinuteSecond2}}" bindchange="selectDateMinuteChange2">
-            <view class="show-date-time-box">Select {{hourMinuteSecond2}}</view>
-          </DatetimePicker2>
-        </view>
+          <picker mode="date" value="{{date2}}" start="{{currentdate}}" end="2099-12-31" bindchange="bindDateChange2">
+            <view class="picker">{{date2}}</view>
+          </picker>
+          <picker mode="time" value="{{time2}}" start="00:00" end="23:59" bindchange="bindTimeChange2">
+            <view class="picker">
+              {{time2}}
+            </view>
+          </picker>
       </view>
-      <view class='panel-between border-b pa-t30 pa-b10 ' wx:if="{{title == '校园跑腿'}}">
-        <view class='fo-28 bold'>取货地点(必填):</view>
-        <input class='text-right fo-28'  name='qi'  placeholder='输入取货地点'></input>
-      </view>
-      <!-- <view class='pa-t30 pa-b30 panel-between item-center border-b' data-path='/pages/mine/address/address?choose=1' bindtap='navTo'>
-          <view class='fo-30'>Location:</view>
-          <view class='panel-end item-center'>
-            <view class='fo-30 fo-g'>{{address ? address:'Select'}}</view>
-            <image src='/img/right.png' class='icon-30 ma-l20'></image>
-          </view>
-        </view> -->
-      <!-- <view class='panel-between border-b pa-t30 pa-b10'>
-        <view class='fo-28 bold'>赏金(必填):</view>
-        <input class='text-right fo-28' type='digit' name='price' value="{{price}}" placeholder='输入金额(元)'></input>
-      </view> -->
       <view class='fo-26 text-center fo-g ma-t30' wx:if="{{msg.des}}">{{msg.des}}</view>
       <button class='btns ' form-type="submit">Request</button>
     </form>
     
   </view>
-  <!-- <view class='panel-center item-center'>
-    <view class='fo-28 fo-b text-center '>费用参考</view>
-    <view class='fo-28 fo-b text-center ma-l30'>代理商入口</view>
-  </view> -->
 
 </view>

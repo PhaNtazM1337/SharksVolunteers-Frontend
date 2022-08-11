@@ -18,8 +18,8 @@
       <input class='text-right fo-28'  name='teachername' value="{{teachername}}" bindinput='usernameInput' placeholder='Enter name'></input>
     </view>
     <view class='panel-between border-b pa-t30 pa-b10 '>
-      <view class='fo-28 bold'>Position:</view>
-      <input class='text-right fo-28'  name='position' value="{{position}}" placeholder='Enter here'></input>
+      <view class='fo-28 bold'>Department/Position:</view>
+      <input class='text-right fo-28'  name='position' bindinput='departmentInput' value="{{department}}" placeholder='Enter here'></input>
     </view>
     <button class='btns ' form-type="submit">Confirm</button>
   </form>

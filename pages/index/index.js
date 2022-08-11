@@ -57,6 +57,11 @@ Page({
       url: '/pages/area/area',
     })
   },
+  navToFeedback(){
+    wx.navigateTo({
+      url: '/pages/feedback/feedback',
+    })
+  },
   publist(){
     wx.navigateTo({
       url: '/pages/pub/pub',
@@ -93,6 +98,11 @@ Page({
           isFirst: false
         })
       }
+      if (wx.getStorageSync("user").phone == '' || wx.getStorageSync("user").phone == null || wx.getStorageSync("user").phone == undefined){
+        wx.navigateTo({
+          url: '/pages/login/login',
+        })
+      }
     })
   },
   onPullDownRefresh(){
@@ -113,17 +123,7 @@ Page({
       _this.setData({
         emer: res.data
       })
-      if (res.data.open_emer == 1) {
-        wx.showModal({
-          title: res.data.emer_title,
-          content: res.data.emer_content,
-          showCancel: false,
-          confirmText: '朕知道了',
-          confirmColor: '#6887e1'
-        })
-      }else{
         _this.getMemr()
-      }
     })
   },
   getMemr(){
@@ -131,15 +131,6 @@ Page({
       _this.setData({
         emer:res.data
       })
-      if(res.data.open_emer == 1){
-        wx.showModal({
-          title: res.data.emer_title,
-          content: res.data.emer_content,
-          showCancel:false,
-          confirmText:'朕知道了',
-          confirmColor:'#6887e1'
-        })
-      }
     })
   },
   getServer(id) {

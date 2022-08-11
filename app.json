@@ -10,8 +10,7 @@
         "pages/order/detail/detail",
         "pages/mine/about/about",
         "pages/teacher/TeacherReg",
-        "components/datePicker/datePicker",
-        "components/datePicker2/datePicker2"
+        "pages/feedback/feedback"
     ],
     "window": {
         "backgroundTextStyle": "dark",

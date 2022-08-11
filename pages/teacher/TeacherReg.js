@@ -5,7 +5,7 @@ let _this;
 Page({
   data: {
     teachername:'',
-    position:'',
+    department:'',
     wx_id:wx.getStorageSync("user").id
   },
   navTo(e) {
@@ -16,15 +16,26 @@ Page({
       teachername: e.detail.value
     })
   },
+  departmentInput:function(e){//获取input里的value值
+    this.setData({
+      department: e.detail.value
+    })
+  },
   formSubmit(e) {
     let teachername = this.data.teachername
+    let department = this.data.department
     if (teachername == '') {
       wx.showToast({
         title: 'Enter name',
         icon: 'none'
       })
+    }else if(department == ''){
+      wx.showToast({
+        title: 'Enter department/position',
+        icon: 'none'
+      })
     }else{
-      app.com.post('help/regTeacher',{wx_id:wx.getStorageSync("user").id},function(val){
+      app.com.post('help/regTeacher',{wx_id:wx.getStorageSync("user").id, department:department, teachername:teachername},function(val){
         if (val.code == 1) {
             wx.navigateBack({
             })

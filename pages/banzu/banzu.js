@@ -168,19 +168,19 @@ Page({
     })
     if(index == 0){
       _this.data.url = 'get2'
-      _this.data.fields = 'helplist.*,wxuser.phone,wxuser.dphone,wxuser.avatar_url,wxuser.nick_name'
+      _this.data.fields = 'helplist.*,wxuser.phone,wxuser.dphone,wxuser.avatar_url,wxuser.nick_name,wxuser.email'
       _this.data.wheres = 'state=1'
       _this.data.sorts = "helplist.create_time desc"
       _this.getList(0)
     }else if(index == 1){
       _this.data.url = 'get2'
-      _this.data.fields = 'helplist.*,wxuser.phone,wxuser.dphone,wxuser.avatar_url,wxuser.nick_name'
+      _this.data.fields = 'helplist.*,wxuser.phone,wxuser.dphone,wxuser.avatar_url,wxuser.nick_name,wxuser.email'
       _this.data.wheres = 'helplist.is_delete=0 and wx_id=' + wx.getStorageSync("user").id
       _this.data.sorts = "helplist.create_time desc"
       _this.getList(0)
     }else{
       _this.data.url = 'get2'
-      _this.data.fields = 'helplist.*,wxuser.phone,wxuser.dphone,wxuser.avatar_url,wxuser.nick_name'
+      _this.data.fields = 'helplist.*,wxuser.phone,wxuser.dphone,wxuser.avatar_url,wxuser.nick_name,wxuser.email'
       _this.data.wheres = 'helplist.is_delete=0 and jd_id=' + wx.getStorageSync("user").id
       _this.data.sorts = "helplist.create_time desc"
       _this.getList(0)
